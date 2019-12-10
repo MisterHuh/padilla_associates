@@ -2,7 +2,6 @@ $(document).ready(initializeApp);
 
 var firstName, lastName, email;
 var emailList = [];
-var test = [];
 
 function initializeApp() {
   console.log("rock and roll");
@@ -16,10 +15,20 @@ function retrieveEmail() {
     url: "server/public/api/retrieve.php",
 
     success: function (response) {
-      var emailList = response;
-      console.log("response is: ", response)
-      console.log("emailList is: ", emailList)
-      console.log("email length is:", response.length)
+      var cleanUp = response.split("\n");
+
+      for (var index = 0; index < cleanUp.length; index++) {
+        if (cleanUp[index] !== "") {
+          emailList.push(cleanUp[index]);
+        }
+      }
+
+
+      // var emailList = response.split("\n");
+      console.log("response is: ", response);
+      console.log("emailList is: ", emailList);
+      // console.log("emailList is: ", emailList)
+      // console.log("email length is:", response.length)
 
       // if (response) {
         // for (var index = 0; index < response.length; index++) {
