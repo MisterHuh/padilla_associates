@@ -15,22 +15,11 @@ if (!$result) {
 
 $output = [];
 while ($row = mysqli_fetch_assoc($result)) {
-  // $output[] = $row["email"];
-  $output[] = $row;
-
+  $output[] = $row["email"];
+  // $output[] = $row;
 }
 
 print(json_encode($output))
-
-// $emails = [];
-// if ($output === []) {
-//   exit("output is blank. check your work");
-// } else {
-//   for ($index = 0; $index < count($output); $index++) {
-//     $emails[] = $output[$index]["email"];
-//   };
-//   print(json_encode($emails));
-// }
 
 
 ?>

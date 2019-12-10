@@ -36,7 +36,6 @@ if ($bodyData["email"]) {
 
 $date = gmdate("Y/m/d H:i:s");
 
-
 $query = "INSERT INTO `registration_list`
           SET `firstName` = '$firstName',
               `lastName` = '$lastName',

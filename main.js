@@ -15,19 +15,16 @@ function retrieveEmail() {
     url: "server/public/api/retrieve.php",
 
     success: function (response) {
-      var cleanUp = response.split("\n");
+      var cleanUp = response.split('\n')
+      console.log("cleanUp is: ", cleanUp);
+
       var cleanUp2 = [];
       cleanUp2.push(cleanUp[3]);
       console.log("cleanUp2 is: ", cleanUp2);
 
-      // for (var index = 3; index < cleanUp.length; index++) {
-      //   if (cleanUp[index] !== "") {
-      //     emailList.push(cleanUp[index]);
-      //   }
-      // }
-
-      console.log("response is: ", response);
-      // console.log("emailList is: ", emailList);
+      var lastIndex = cleanUp2.length - 1
+      var cleanUp3 = cleanUp2.substr( 1,lastIndex )
+      console.log("cleanUp3 is: ", cleanUp3);
 
     }
   };
@@ -36,16 +33,11 @@ function retrieveEmail() {
 
 function sanitizeData() {
 
-  // console.log("email list is: ", emailList);
-
   firstName = $("#firstName").val();
   lastName = $("#lastName").val();
   email = $("#email").val();
 
-  emailChecker(email);
-  // nameChecker(firstName, lastName);
-
-  if (emailChecker(email)) {
+  if (emailChecker(email)) && (nameChecker(firstName, lastName)) ) {
     registerNewUser(firstName, lastName, email)
   }
 
@@ -54,25 +46,20 @@ function sanitizeData() {
 function nameChecker(firstName, lastName) {
   if (firstName.length > 1 && lastName.length > 1) {
     if ((/^\S*$/.test(firstName)) && /^[a-z ,.'-]+$/i.test(lastName)) {
-      console.log("passed name test");
       return true;
     } else {
-      console.log("failed name test");
+      alert("failed name test: please double check your name");
     }
   } else {
-    console.log("failed name test: need at least 1 character");
+    alert("failed name test: need at least 1 character");
   }
 }
 
 function emailChecker(email) {
   if (/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email)) {
-    // for (var index = 0; index < emailList.length; index++) {
-      // if (email == emailList[index]) {
-        // alert("User with same email already exists");
-      // }
-    // }
-    alert("passed regex test. ready to add")
-    registerNewUser(firstName, lastName, email)
+  /* run through the retrieved emailList and check for match */
+  /* If no match, run registerNewUser, else, throw alert */
+    return true;
   } else {
     alert("Please enter an appropriate email")
   }
@@ -86,7 +73,6 @@ function registerNewUser(firstName, lastName, email) {
     email: email
   })
 
-  console.log("newUserInfo is: ", newUserInfo)
   var addConfig = {
     type: "post",
     datatype: "json",
