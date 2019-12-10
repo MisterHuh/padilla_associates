@@ -16,63 +16,39 @@ function retrieveEmail() {
 
     success: function (response) {
       var cleanUp = response.split("\n");
+      var cleanUp2 = [];
+      cleanUp2.push(cleanUp[3]);
+      console.log("cleanUp2 is: ", cleanUp2);
 
-      for (var index = 0; index < cleanUp.length; index++) {
-        if (cleanUp[index] !== "") {
-          emailList.push(cleanUp[index]);
-        }
-      }
-
-
-      // var emailList = response.split("\n");
-      console.log("response is: ", response);
-      console.log("emailList is: ", emailList);
-      // console.log("emailList is: ", emailList)
-      // console.log("email length is:", response.length)
-
-      // if (response) {
-        // for (var index = 0; index < response.length; index++) {
-          // console.log("test is: ", response[index]["email"])
-          // test.push(response[index]["email"]);
-        // }
-        // console.log("cleaned up email is: ", test);
+      // for (var index = 3; index < cleanUp.length; index++) {
+      //   if (cleanUp[index] !== "") {
+      //     emailList.push(cleanUp[index]);
+      //   }
       // }
+
+      console.log("response is: ", response);
+      // console.log("emailList is: ", emailList);
 
     }
   };
   $.ajax(retrieveConfig);
 }
 
-// function pushToEmailList(response) {
-//   if (emailList) {
-//     for (var index = 0; index < emailList.length; index++) {
-//       test.push(response[index]["email"]);
-//     }
-//     console.log("cleaned up email is: ", email);
-//   }
-// }
-
 function sanitizeData() {
 
-  console.log("email list is: ", emailList);
+  // console.log("email list is: ", emailList);
 
   firstName = $("#firstName").val();
   lastName = $("#lastName").val();
   email = $("#email").val();
 
   emailChecker(email);
-  nameChecker(firstName, lastName);
+  // nameChecker(firstName, lastName);
 
-  if (emailChecker(email) && nameChecker(firstName, lastName)) {
-    alert("both passed test");
-
-  } else {
-    alert ("need correct name or email")
+  if (emailChecker(email)) {
+    registerNewUser(firstName, lastName, email)
   }
 
-  // var emailRegex = "/[^@]+@[^\.]+\..+/";
-  // var emailChecker = emailRegex.test(email);
-  // console.log("emailChecker is: ", emailChecker);
 }
 
 function nameChecker(firstName, lastName) {
@@ -89,6 +65,33 @@ function nameChecker(firstName, lastName) {
 }
 
 function emailChecker(email) {
-  console.log("passed email test")
-  return /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email)
+  if (/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email)) {
+    // for (var index = 0; index < emailList.length; index++) {
+      // if (email == emailList[index]) {
+        // alert("User with same email already exists");
+      // }
+    // }
+    alert("passed regex test. ready to add")
+    registerNewUser(firstName, lastName, email)
+  } else {
+    alert("Please enter an appropriate email")
+  }
+}
+
+function registerNewUser(firstName, lastName, email) {
+
+  var newUserInfo = JSON.stringify({
+    firstName: firstName,
+    lastName: lastName,
+    email: email
+  })
+
+  console.log("newUserInfo is: ", newUserInfo)
+  var addConfig = {
+    type: "post",
+    datatype: "json",
+    url: "server/public/api/add.php",
+    data: newUserInfo
+  };
+  $.ajax(addConfig)
 }
