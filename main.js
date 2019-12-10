@@ -1,11 +1,13 @@
 $(document).ready(initializeApp);
 
-var emailList;
+var emailList, firstName, lastName, email;
 
 function initializeApp() {
   console.log("rock and roll");
   testWord();
   retrieveEmail();
+  $("#button").on("click", addUser);
+
 }
 
 function testWord() {
@@ -22,4 +24,14 @@ function retrieveEmail() {
     }
   };
   $.ajax(retrieveConfig);
+}
+
+function addUser() {
+  firstName = $("#firstName").val();
+  lastName = $("#lastName").val();
+  email = $("#email").val();
+
+  console.log("firstName is: ", firstName);
+  console.log("lastName is: ", lastName);
+  console.log("email is: ", email);
 }

@@ -7,10 +7,17 @@
   margin: 1%
 }
 
-.test {
+#button {
   width: 10%;
   text-align: center;
-  border-radius: 15px;
-  border: 1px black solid;
+  border-radius: 10px;
+  border: 1px grey solid;
   margin-top: 1%;
+}
+
+#button:hover {
+  cursor: pointer;
+  background-color: #5DBCD2;
+  color: white;
+  border: 1px white solid;
 }
