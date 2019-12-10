@@ -21,7 +21,6 @@ while ($row = mysqli_fetch_assoc($result)) {
 if ($output === []) {
   exit("output is blank. check your work");
 } else {
-  print("WORKED");
   print(json_encode($output));
 }
 
