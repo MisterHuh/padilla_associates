@@ -15,17 +15,7 @@ function retrieveEmail() {
     url: "server/public/api/retrieve.php",
 
     success: function (response) {
-      var cleanUp = response.split('\n')
-      console.log("cleanUp is: ", cleanUp);
-
-      var cleanUp2 = [];
-      cleanUp2.push(cleanUp[3]);
-      console.log("cleanUp2 is: ", cleanUp2);
-
-      var lastIndex = cleanUp2.length - 1
-      // var cleanUp3 = cleanUp2.substr( 1,lastIndex )
-      // console.log("cleanUp3 is: ", cleanUp3);
-
+      var emailList = response;
     }
   };
   $.ajax(retrieveConfig);
@@ -57,8 +47,6 @@ function nameChecker(firstName, lastName) {
 
 function emailChecker(email) {
   if (/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email)) {
-  /* run through the retrieved emailList and check for match */
-  /* If no match, run registerNewUser, else, throw alert */
     return true;
   } else {
     alert("Please enter an appropriate email")
