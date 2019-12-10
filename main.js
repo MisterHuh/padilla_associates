@@ -23,8 +23,8 @@ function retrieveEmail() {
       console.log("cleanUp2 is: ", cleanUp2);
 
       var lastIndex = cleanUp2.length - 1
-      var cleanUp3 = cleanUp2.substr( 1,lastIndex )
-      console.log("cleanUp3 is: ", cleanUp3);
+      // var cleanUp3 = cleanUp2.substr( 1,lastIndex )
+      // console.log("cleanUp3 is: ", cleanUp3);
 
     }
   };
@@ -37,7 +37,7 @@ function sanitizeData() {
   lastName = $("#lastName").val();
   email = $("#email").val();
 
-  if (emailChecker(email)) && (nameChecker(firstName, lastName)) ) {
+  if (emailChecker(email) && nameChecker(firstName, lastName) ) {
     registerNewUser(firstName, lastName, email)
   }
 
@@ -80,4 +80,10 @@ function registerNewUser(firstName, lastName, email) {
     data: newUserInfo
   };
   $.ajax(addConfig)
+
+  alert("new user added!");
+
+  document.getElementById("firstName").value="";
+  document.getElementById("lastName").value = "";
+  document.getElementById("email").value = "";
 }
