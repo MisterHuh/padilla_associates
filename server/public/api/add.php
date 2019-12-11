@@ -1,4 +1,3 @@
-
 <?php
 
 require_once("functions.php");
@@ -47,6 +46,5 @@ $result = mysqli_query($conn, $query);
 if (!$result) {
   throw new Exception("error with query " . mysqli_error($conn));
 }
-
 
 ?>

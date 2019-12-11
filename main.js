@@ -2,7 +2,7 @@ $(document).ready(initializeApp);
 
 var firstName, lastName, email;
 var emailList = [];
-var counter = 0;
+var testList = [];
 
 function initializeApp() {
   console.log("rock and roll");
@@ -17,17 +17,26 @@ function retrieveEmail() {
     url: "server/public/api/retrieve.php",
 
     success: function (response) {
-      var emailList = response;
-      // counter++;
-      // console.log("counter is: ", counter);
+      // var emailList = response.split('"');
+
       console.log("response is: ", response);
+      console.log("response.length is: ", response.length);
       // console.log("emailList is: ", emailList);
+
+      // console.log("emailList length is: ", emailList.length);
+      // console.log("emailList[0]: ", emailList[0]);
+      // console.log("emailList[1]: ", emailList[1]);
+      // console.log("emailList[2]: ", emailList[2]);
+
+
     }
   };
   $.ajax(retrieveConfig);
 }
 
 function sanitizeData() {
+
+  console.log("emailList from sanitizeData() is: ", emailList);
 
   firstName = $("#firstName").val();
   lastName = $("#lastName").val();
