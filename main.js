@@ -2,6 +2,7 @@ $(document).ready(initializeApp);
 
 var firstName, lastName, email;
 var emailList = [];
+var counter = 0;
 
 function initializeApp() {
   console.log("rock and roll");
@@ -12,10 +13,15 @@ function initializeApp() {
 function retrieveEmail() {
   var retrieveConfig = {
     datatype: "json",
+    headers: { 'Content-Type': 'application/json' },
     url: "server/public/api/retrieve.php",
 
     success: function (response) {
       var emailList = response;
+      // counter++;
+      // console.log("counter is: ", counter);
+      console.log("response is: ", response);
+      // console.log("emailList is: ", emailList);
     }
   };
   $.ajax(retrieveConfig);

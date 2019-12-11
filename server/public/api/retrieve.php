@@ -16,9 +16,10 @@ if (!$result) {
 $output = [];
 while ($row = mysqli_fetch_assoc($result)) {
   $output[] = $row["email"];
+  // print(json_encode($output));
 }
 
-print(json_encode($output))
+print(json_encode($output));
 
 
 ?>
