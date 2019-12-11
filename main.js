@@ -13,7 +13,7 @@ function initializeApp() {
 function retrieveEmail() {
   var retrieveConfig = {
     datatype: "json",
-    headers: { 'Content-Type': 'application/json' },
+    // headers: { 'Content-Type': 'application/json' },
     url: "server/public/api/retrieve.php",
 
     success: function (response) {

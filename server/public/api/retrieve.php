@@ -2,6 +2,7 @@
 
 require_once("functions.php");
 set_exception_handler("error_handler");
+startup();
 require_once("db_connection.php");
 
 $query = "SELECT `email` FROM `registration_list` ORDER BY date ASC";
@@ -14,8 +15,7 @@ if (!$result) {
 
 $output = [];
 while ($row = mysqli_fetch_assoc($result)) {
-  // $output[] = $row["email"];
-  $output[] = $row;
+  $output[] = $row["email"];
 }
 
 print(json_encode($output));
